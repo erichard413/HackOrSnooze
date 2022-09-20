@@ -163,7 +163,8 @@ class User {
    */
 
   static async login(username, password) {
-    const response = await axios({
+    try {
+       const response = await axios({
       url: `${BASE_URL}/login`,
       method: "POST",
       data: { user: { username, password } },
@@ -181,6 +182,9 @@ class User {
       },
       response.data.token
     );
+    } catch (err) {
+    alert("Invalid Login!")
+   }
   }
 
   /** When we already have credentials (token & username) for a user,
